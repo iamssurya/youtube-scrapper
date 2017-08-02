@@ -20,10 +20,12 @@
             {% for video in data%}
                 <div class="row">
                     <div class="col-md-2"><img src="{{video.thumb}}" height="138" /></div>
-                    <div class="col-md-3"><a href="/video/{{video.href}}">{{video.title}}</a></div>
+                    <div class="col-md-3">
+                      <a href="/video/{{video.href}}">{{video.title}}</a><br  />
+                      <button class="btn btn-primary btn-sm"><a target="_blank" href="/download/{{video.href}}" class="glyphicon glyphicon-cloud-download"></a></button>
+                    </div>
                 </div>
             {% endfor %}
         </div>
     </body>
 </html>
-
