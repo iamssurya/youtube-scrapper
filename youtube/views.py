@@ -25,14 +25,14 @@ def index(request):
 
     search_text = request.GET.get('search')
     if search_text is not None:
-        print(search_text)
+        # print(search_text)
         context = {
             'search':search_text,
             'data':[]
         }
-        print(context)
+        # print(context)
         url = "https://www.youtube.com/results?search_query="+search_text+""
-        print('Searching '+url)
+        # print('Searching '+url)
         source_code = requests.get(url)
         plain_text = source_code.text
         soup = BeautifulSoup(plain_text, "html.parser")
@@ -43,15 +43,15 @@ def index(request):
                 obj = {'title':'nil','href':'','thumb':'nil'};
                 obj['title'] = li.find('a').string
                 obj['href'] = li.find('a')['href'][9:]
-                print(obj['href'])
-                print(str(obj['href']).find('?'))
+                # print(obj['href'])
+                # print(str(obj['href']).find('?'))
                 if obj['href'].find('&') > -1:
                     print('inside')
                     ind = obj['href'].find('&')
                     print(ind)
                     obj['href'] = obj['href'][0:ind]
                 obj['thumb'] = 'http://i4.ytimg.com/vi/' + obj['href'] + '/hqdefault.jpg'
-                print('----------');
+                # print('----------');
                 context['data'].append(obj)
                 # print(context)
 
