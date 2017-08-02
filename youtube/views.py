@@ -31,12 +31,20 @@ def index(request):
         for link in soup.find('div',{'id':'results'}).find('ol',{'class','item-section'}).findAll('li'):
             li = link.find('h3',{'class','yt-lockup-title '});
             if li is not None:
-                obj = {'title':'nil','href':''};
+                obj = {'title':'nil','href':'','thumb':'nil'};
                 obj['title'] = li.find('a').string
                 obj['href'] = li.find('a')['href'][9:]
-                print(obj)
-                print('------');
+                print(obj['href'])
+                print(str(obj['href']).find('?'))
+                if obj['href'].find('&') > -1:
+                    print('inside')
+                    ind = obj['href'].find('&')
+                    print(ind)
+                    obj['href'] = obj['href'][0:ind]
+                obj['thumb'] = 'http://i4.ytimg.com/vi/' + obj['href'] + '/hqdefault.jpg'
+                print('----------');
                 context['data'].append(obj)
+                # print(context)
 
     else:
         context={'data':'nil'}
